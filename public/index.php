@@ -1,4 +1,20 @@
+<?php 
+session_start();
+include ('../src/db_conn.php');
 
+$sql ="SELECT Packages.PackageId ,
+Packages.name ,Packages.description,
+Auteurs.AuteurId, Auteurs.name ,Auteurs.email FROM Fusion INNER JOIN Packages ON Fusion.PackageId = Packages.PackageId
+INNER JOIN Auteurs ON Fusion.AuteurId = Auteurs.AuteurId ";
+ $result =mysqli_query($conn,$sql);
+ if($result){
+    echo "tout est bien";
+ }
+ else{
+    echo "error ";
+ }
+
+?>
 
 
 
@@ -57,7 +73,29 @@
                 </tr>
             </thead>
             <tbody>
-               
+                <?php
+                if(mysqli_num_rows($result)>0){
+                    while($row =mysqli_fetch_assoc($result)){
+                        echo "<tr>";
+                        echo "<td>".$row['PackageId'] . "</td>";
+                        echo "<td>".$row['name'] . "</td>";
+                        echo "<td>".$row['description'] . "</td>";
+                        echo "<td>".$row['AuteurId'] . "</td>";
+                        echo "<td>".$row['name'] . "</td>";
+                        echo "<td>".$row['email'] . "</td>";
+                        echo "<td>
+                        <a href='remove/delete_package.php?deleteid=" . $row['AuteurId']. "' class='btn btn-delete'>delete</a>
+                        <a href='updating/update_package.php?updateid=" . $row['AuteurId']. "' class='btn btn-update'>update</a>
+                        <a href='updating/update_package.php?detailid=" . $row['AuteurId']. "' class='btn btn-detail'>moreDetail</a>
+                            </td>";
+                    }}
+                    else
+                    {
+                        echo "<tr> <td>veulliez ajouter de information</td></tr>";
+                    }
+                
+                
+                ?>
             </tbody>
            </table>
 
