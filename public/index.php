@@ -88,7 +88,7 @@ INNER JOIN Versions ON Versions.PackageId = Packages.PackageId";
                         echo "<td>".$row['email'] . "</td>";
                         echo "<td>".$row['version_number'] . "</td>";
                         echo "<td>
-                        <a href='remove/delete_package.php?deleteid=" . $row['id']. "' class='btn btn-delete'>delete</a>
+                        <a href='./remove/delete_package_auteur.php?deleteid=" . $row['id']. "' class='btn btn-delete'>delete</a>
                         <a href='updating/update_package.php?updateid=" . $row['id']. "' class='btn btn-update'>update</a>
                         
                             </td>";

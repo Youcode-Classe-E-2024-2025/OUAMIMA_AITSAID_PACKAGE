@@ -7,7 +7,7 @@ $id=$_GET['deleteid'];
 $sql ="DELETE FROM `Auteurs` WHERE AuteurId =$id";
 $result =mysqli_query($conn,$sql);
 if($result){
-    echo "right";
+    header('Location:../adding/add_auteur.php');
 }
 else{
     die(mysqli_error($conn));

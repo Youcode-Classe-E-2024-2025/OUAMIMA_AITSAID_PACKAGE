@@ -4,14 +4,47 @@ include ('../remove/db_conn.php');
 
 $sql ="SELECT * from Packages";
  $result =mysqli_query($conn,$sql);
- if($result){
-    echo "tout est bien";
+ if(!$result){
+    echo 'Erreur lors de la récupération des données : ' . mysqli_error($conn);
  }
- else{
-    echo "error ";
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+     $name = $_POST['name'] ?? '';
+     $description = $_POST['description'] ?? '';
+ 
+    
+     if (!empty($name) && !empty($description)) {
+         
+         $requete = "INSERT INTO `Packages` (name, description) VALUES (?, ?)";
+         $stmt = mysqli_prepare($conn, $requete);
+ 
+         if ($stmt) {
+             // Associer les variables à la requête préparée
+             mysqli_stmt_bind_param($stmt, "ss", $name, $description);
+ 
+             
+             if (mysqli_stmt_execute($stmt)) {
+                 echo '<script>alert("Package ajouté avec succès !");</script>';
+                 header("Location: " . $_SERVER['PHP_SELF']); 
+                 exit;
+             } else {
+                 echo '<script>alert("Erreur lors de l\'ajout : ' . mysqli_error($conn) . '");</script>';
+             }
+ 
+             mysqli_stmt_close($stmt);
+         } else {
+             echo '<script>alert("Erreur de préparation de la requête : ' . mysqli_error($conn) . '");</script>';
+         }
+     } else {
+         echo '<script>alert("Veuillez remplir tous les champs.");</script>';
+     }
+ 
+     // Fermer la connexion
+     mysqli_close($conn);
  }
 
-?>
+ ?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +52,14 @@ $sql ="SELECT * from Packages";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <link rel="stylesheet" href="../../assets/style.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+
 
 </head>
 <body>
-<div class="sidebar"> 
+<div class="sidebar "> 
         <h2>Admin Panel</h2>
         <ul>
             <li><a href="../index.php"><i class="fas fa-home"></i> Dashboard</a></li>
@@ -37,16 +73,16 @@ $sql ="SELECT * from Packages";
         <div class="header">
             <h1>Welcome to the Dashboard</h1>
             <input type="text" placeholder="Search...">
-            <button><a href="addPackage.php">Ajouter Auteurs</a></button>
+            <button id="openForm">Add Package</button>
         </div>
         <div class="content">
             <div class="card">
                 <h3>Total Authors</h3>
-                <p>10</p>
+                <p>25</p>
             </div>
             <div class="card">
                 <h3>Total Packages</h3>
-                <p>25</p>
+                <p><?php echo $total_packages;?></p>
             </div>
             <div class="card">
                 <h3>Total Versions</h3>
@@ -70,7 +106,7 @@ $sql ="SELECT * from Packages";
                         echo "<td>".$row['name'] . "</td>";
                         echo "<td>".$row['description'] . "</td>";
                         echo "<td> 
-                        <a href='remove/delete_auteur.php?deleteid=" . $row['PackageId']. "' class='btn btn-delete'>delete</a>
+                        <a href='../remove/delete_package.php?deleteid=" . $row['PackageId']. "' class='btn btn-delete'>delete</a>
                         <a href='updating/update_auteur.php?updateid=" . $row['PackageId']. "' class='btn btn-update'>update</a>
                             </td>";
                     }}
@@ -83,10 +119,50 @@ $sql ="SELECT * from Packages";
                 ?>
             </tbody>
            </table>
+           
 
 
 
         
 </div>
+<div id="Formulaire" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden ">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Package</h2>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-700">&times;</button>
+      </div>
+
+      
+      <form id="popupForm" method="post" class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700">description</label>
+          <textarea id="description" name="description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">ADD</button>
+      </form>
+    </div>
+  </div>
+
+
+
+</div>
 </body>
+<script>
+
+const form =document.getElementById('Formulaire');
+const openform=document.getElementById('openForm');
+openform.addEventListener('click',()=>{
+    form.classList.remove('hidden');}
+
+)
+
+
+
+</script>
 </html>
