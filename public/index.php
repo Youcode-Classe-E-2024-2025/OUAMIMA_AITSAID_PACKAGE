@@ -3,7 +3,7 @@ session_start();
 include ('./remove/db_conn.php');
 
 $sql ="SELECT 
-    Fusion.id, 
+    package_auteur.id, 
     Versions.version_number, 
     Packages.PackageId,
     Packages.name as pname,
@@ -12,9 +12,9 @@ $sql ="SELECT
     Auteurs.name,
     Auteurs.email
 FROM 
-    Fusion
-INNER JOIN Packages ON Fusion.PackageId = Packages.PackageId
-INNER JOIN Auteurs ON Fusion.AuteurId = Auteurs.AuteurId
+    package_auteur
+INNER JOIN Packages ON package_auteur.PackageId = Packages.PackageId
+INNER JOIN Auteurs ON package_auteur.AuteurId = Auteurs.AuteurId
 INNER JOIN Versions ON Versions.PackageId = Packages.PackageId";
  $result =mysqli_query($conn,$sql);
  if($result){
@@ -50,7 +50,6 @@ INNER JOIN Versions ON Versions.PackageId = Packages.PackageId";
         <div class="header">
             <h1>Welcome to the Dashboard</h1>
             <input type="text" placeholder="Search...">
-            <button><a href="addPackage.php">AJOUTER PACKAGE</a></button>
         </div>
         <div class="content">
             <div class="card">
@@ -91,7 +90,7 @@ INNER JOIN Versions ON Versions.PackageId = Packages.PackageId";
                         echo "<td>
                         <a href='remove/delete_package.php?deleteid=" . $row['id']. "' class='btn btn-delete'>delete</a>
                         <a href='updating/update_package.php?updateid=" . $row['id']. "' class='btn btn-update'>update</a>
-                        <a href='updating/update_package.php?detailid=" . $row['PackageId']. "' class='btn btn-detail'>moreDetail</a>
+                        
                             </td>";
                     }}
                     else

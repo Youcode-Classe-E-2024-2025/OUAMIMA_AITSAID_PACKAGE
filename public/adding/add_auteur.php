@@ -70,7 +70,7 @@ $sql ="SELECT * from Auteurs";
                         echo "<td>".$row['name'] . "</td>";
                         echo "<td>".$row['email'] . "</td>";
                         echo "<td> 
-                        <a href='remove/delete_auteur.php?deleteid=" . $row['AuteurId']. "' class='btn btn-delete'>delete</a>
+                        <a href='../remove/delete_auteur.php?deleteid=" . $row['AuteurId']. "' class='btn btn-delete'>delete</a>
                         <a href='updating/update_auteur.php?updateid=" . $row['AuteurId']. "' class='btn btn-update'>update</a>
                             </td>";
                     }}

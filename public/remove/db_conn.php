@@ -1,5 +1,5 @@
 <?php 
-$conn =mysqli_connect("localhost","root","","Gestion_Package");
+$conn =mysqli_connect("localhost","root","","Gestion_Packages");
 
 if($conn){
     echo "right connection";

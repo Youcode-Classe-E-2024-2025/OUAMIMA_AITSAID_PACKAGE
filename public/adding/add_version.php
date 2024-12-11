@@ -70,10 +70,10 @@ $sql ="SELECT * from Versions";
                         echo "<tr>";
                         echo "<td>".$row['version_number'] . "</td>";
                         echo "<td>".$row['creation_date'] . "</td>";
-                        echo "<td>".$row['PackageId'] . "</td>";
+                        echo "<td>".$row['packageId'] . "</td>";
                         echo "<td> 
-                        <a href='remove/delete_auteur.php?deleteid=" . $row['VersionId']. "' class='btn btn-delete'>delete</a>
-                        <a href='updating/update_auteur.php?updateid=" . $row['VersionId']. "' class='btn btn-update'>update</a>
+                        <a href='../remove/delete_version.php?deleteid=" . $row['versionId']. "' class='btn btn-delete'>delete</a>
+                        <a href='updating/update_auteur.php?updateid=" . $row['versionId']. "' class='btn btn-update'>update</a>
                             </td>";
                     }}
                     else
