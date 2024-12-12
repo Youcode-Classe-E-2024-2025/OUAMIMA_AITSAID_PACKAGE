@@ -39,7 +39,7 @@ $sql ="SELECT * from Packages";
          echo '<script>alert("Veuillez remplir tous les champs.");</script>';
      }
  
-     // Fermer la connexion
+     
      mysqli_close($conn);
  }
 include ('caractiristique.php');
