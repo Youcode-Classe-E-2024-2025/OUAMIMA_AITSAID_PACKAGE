@@ -42,7 +42,7 @@ $sql ="SELECT * from Packages";
      // Fermer la connexion
      mysqli_close($conn);
  }
-
+include ('caractiristique.php');
  ?> 
 
 <!DOCTYPE html>
@@ -77,8 +77,8 @@ $sql ="SELECT * from Packages";
         </div>
         <div class="content">
             <div class="card">
-                <h3>Total Authors</h3>
-                <p>25</p>
+                <h3>Total Auteurs</h3>
+                <p><?php  echo $total_auteurs;?></p>
             </div>
             <div class="card">
                 <h3>Total Packages</h3>
@@ -86,7 +86,7 @@ $sql ="SELECT * from Packages";
             </div>
             <div class="card">
                 <h3>Total Versions</h3>
-                <p>100</p>
+                <p><?php  echo $total_versions;?></p>
             </div> 
 </div>
            <h2>List Packages</h2>

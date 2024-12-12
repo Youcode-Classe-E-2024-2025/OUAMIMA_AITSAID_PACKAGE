@@ -10,7 +10,7 @@ $sql ="SELECT * from Versions";
  else{
     echo "error ";
  }
-
+include('caractiristique.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,20 +37,20 @@ $sql ="SELECT * from Versions";
         <div class="header">
             <h1>Welcome to the Dashboard</h1>
             <input type="text" placeholder="Search...">
-            <button><a href="addPackage.php">Ajouter Auteurs</a></button>
+            <button id="openForm">Add Package</button>
         </div>
         <div class="content">
             <div class="card">
-                <h3>Total Authors</h3>
-                <p>10</p>
+                <h3>Total Auteurs</h3>
+                <p><?php  echo $total_auteurs;?></p>
             </div>
             <div class="card">
                 <h3>Total Packages</h3>
-                <p>25</p>
+                <p><?php echo $total_packages;?></p>
             </div>
             <div class="card">
                 <h3>Total Versions</h3>
-                <p>100</p>
+                <p><?php  echo $total_versions;?></p>
             </div> 
 </div>
            <h2>List versions</h2>

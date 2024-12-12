@@ -10,16 +10,16 @@ $sql ="SELECT * from Auteurs";
  else{
     echo "error ";
  }
-
+include('caractiristique.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard</title><link rel="stylesheet" href="../../assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../../assets/style.css">
+    
 
 </head>
 <body>
@@ -37,20 +37,20 @@ $sql ="SELECT * from Auteurs";
         <div class="header">
             <h1>Welcome to the Dashboard</h1>
             <input type="text" placeholder="Search...">
-            <button><a href="addPackage.php">Ajouter Auteurs</a></button>
+            <button id="openForm">Add Package</button>
         </div>
         <div class="content">
             <div class="card">
-                <h3>Total Authors</h3>
-                <p>10</p>
+                <h3>Total Auteurs</h3>
+                <p><?php  echo $total_auteurs;?></p>
             </div>
             <div class="card">
                 <h3>Total Packages</h3>
-                <p>25</p>
+                <p><?php echo $total_packages;?></p>
             </div>
             <div class="card">
                 <h3>Total Versions</h3>
-                <p>100</p>
+                <p><?php  echo $total_versions;?></p>
             </div> 
 </div>
            <h2>List Auteurs</h2>
