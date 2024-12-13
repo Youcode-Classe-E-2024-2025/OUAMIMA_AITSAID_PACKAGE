@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include ('./remove/db_conn.php');
+include ('../Src/db_conn.php');
 
 $sql ="SELECT 
     package_auteur.id, 

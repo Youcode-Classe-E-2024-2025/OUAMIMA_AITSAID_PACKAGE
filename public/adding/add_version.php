@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include ('../remove/db_conn.php');
+include ('../../Src/db_conn.php');
 $query ="SELECT PackageId,name from Packages";
 $resultP=mysqli_query($conn,$query);
 if(!$resultP){

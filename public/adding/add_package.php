@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include ('../remove/db_conn.php');
+include ('../../Src/db_conn.php');
 
 $sql ="SELECT * from Packages";
  $result =mysqli_query($conn,$sql);
@@ -43,6 +43,10 @@ $sql ="SELECT * from Packages";
      mysqli_close($conn);
  }
 include ('caractiristique.php');
+
+
+
+
  ?> 
 
 <!DOCTYPE html>
@@ -107,7 +111,7 @@ include ('caractiristique.php');
                         echo "<td>".$row['description'] . "</td>";
                         echo "<td> 
                         <a href='../remove/delete_package.php?deleteid=" . $row['PackageId']. "' class='btn btn-delete'>delete</a>
-                        <a href='updating/update_auteur.php?updateid=" . $row['PackageId']. "' class='btn btn-update'>update</a>
+                        <a href='../updating/update_package.php?updateid=" . $row['PackageId']. "' class='btn btn-update'>update</a>
                             </td>";
                     }}
                     else
@@ -129,7 +133,7 @@ include ('caractiristique.php');
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-bold">Package</h2>
-        <button id="closeModal" class="text-gray-500 hover:text-gray-700">&times;</button>
+        <button id="closeform" class="text-gray-500 hover:text-gray-700">&times;</button>
       </div>
 
       
@@ -157,10 +161,14 @@ include ('caractiristique.php');
 
 const form =document.getElementById('Formulaire');
 const openform=document.getElementById('openForm');
+const closeform= document.getElementById('closeform')
 openform.addEventListener('click',()=>{
     form.classList.remove('hidden');}
 
 )
+closeform.addEventListener('click' ,() =>{
+    form.classList.add('hidden');
+})
 
 
 

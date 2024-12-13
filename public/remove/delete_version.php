@@ -1,6 +1,6 @@
 <?php 
 
-include('db_conn.php');
+include ('../../Src/db_conn.php');
 
 if(isset($_GET['deleteid'])){
 $id =$_GET['deleteid'];

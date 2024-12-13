@@ -1,6 +1,7 @@
 <?php 
 session_start();
-include ('../remove/db_conn.php');
+//include 
+include ('../../Src/db_conn.php');
 
 $sql ="SELECT * from Auteurs";
  $result =mysqli_query($conn,$sql);
@@ -10,7 +11,7 @@ $sql ="SELECT * from Auteurs";
  else{
     echo "error ";
  }
-
+//Ajouter un auteur
 
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $name = $_POST['name'] ?? '';
