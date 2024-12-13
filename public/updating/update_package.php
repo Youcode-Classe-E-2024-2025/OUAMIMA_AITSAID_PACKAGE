@@ -28,8 +28,7 @@ if (isset($_GET['updateid']) && is_numeric($_GET['updateid'])) {
     exit;
 }
 
-
-
+=
 
 ?>
 <!DOCTYPE html>

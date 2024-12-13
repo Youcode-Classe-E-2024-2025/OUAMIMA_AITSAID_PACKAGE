@@ -58,7 +58,7 @@ include('caractiristique.php');
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
 
 </head>
-<body>
+<body class="text-gray-700  font-bold">
 <div class="sidebar"> 
         <h2>Admin Panel</h2>
         <ul>
@@ -71,7 +71,7 @@ include('caractiristique.php');
 </div>
 <div class="main-content">
         <div class="header">
-            <h1>Welcome to the Dashboard</h1>
+            <h1 >Gestion Package</h1>
             <input type="text" placeholder="Search...">
             <button id="openForm">Add Version</button>
         </div>

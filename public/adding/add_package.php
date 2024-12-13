@@ -38,40 +38,24 @@ $sql ="SELECT * from Packages";
                     mysqli_stmt_bind_param($stmF,"ii",$last_idP,$auteur_id);
 
                     if(mysqli_stmt_execute($stmF)){
-                        echo '<script>alert("Package and author relationship added successfully!");</script>';
+                        echo '<script>alert("Package et relation avec l\'auteur ajoutés avec succès !");</script>';
                         header("Location: " . $_SERVER['PHP_SELF']); 
                         exit;
                     }else {
-                        echo '<script>alert("Error adding author relationship: ' . mysqli_error($conn) . '");</script>';
+                        echo '<script>alert("Erreur lors de l\'ajout de la relation avec l\'auteur ' . mysqli_error($conn) . '");</script>';
                     }
                     mysqli_stmt_close($stmtF);
                 }else {
-                    echo '<script>alert("Error preparing relationship query: ' . mysqli_error($conn) . '");</script>';
+                    echo '<script>alert("Erreur lors de la préparation de la requête pour la relation :' . mysqli_error($conn) . '");</script>';
                 }}else {
-                    echo '<script>alert("Error adding package: ' . mysqli_error($conn) . '");</script>';
+                    echo '<script>alert(""Erreur lors de l\'ajout du package :' . mysqli_error($conn) . '");</script>';
                 }}else {
-                    echo '<script>alert("Please fill in all fields.");</script>';
+                    echo '<script>alert("Veuillez remplir tous les champs.");</script>';
                 }
                 mysqli_close($conn);}
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
 include ('caractiristique.php');
-
-
-
-
  ?> 
 
 <!DOCTYPE html>
@@ -82,14 +66,14 @@ include ('caractiristique.php');
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../../assets/style.css">
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
-
+    <link rel="stylesheet" href="../../assets/style.css">
 
 </head>
-<body>
+<body class="text-gray-700  font-bold">
 <div class="sidebar "> 
-        <h2>Admin Panel</h2>
+        <h2 >Admin Panel</h2>
         <ul>
             <li><a href="../index.php"><i class="fas fa-home"></i> Dashboard</a></li>
             <li><a href="add_auteur.php"><i class="fas fa-user"></i> Auteurs</a></li>
@@ -100,7 +84,7 @@ include ('caractiristique.php');
 </div>
 <div class="main-content">
         <div class="header">
-            <h1>Welcome to the Dashboard</h1>
+        <h1 >Gestion Package</h1>
             <input type="text" placeholder="Search...">
             <button id="openForm">Add Package</button>
         </div>

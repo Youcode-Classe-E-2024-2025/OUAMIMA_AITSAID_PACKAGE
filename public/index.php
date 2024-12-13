@@ -48,9 +48,8 @@ INNER JOIN Versions ON Versions.PackageId = Packages.PackageId";
 </div>
 <div class="main-content">
         <div class="header">
-            <h1>Welcome to the Dashboard</h1>
+            <h1>Gestion Package</h1>
             <input type="text" placeholder="Search...">
-            <button id="openForm">Add Package</button>
         </div>
         <div class="content">
             <div class="card">
@@ -66,7 +65,7 @@ INNER JOIN Versions ON Versions.PackageId = Packages.PackageId";
                 <p><?php  echo $total_versions;?></p>
             </div> 
 </div>
-           <h2>List fusions</h2>
+           <h2>ALL Packages_Auteurs</h2>
            <table class="fusion-table">
             <thead>
                 <tr>

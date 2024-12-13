@@ -1,7 +1,4 @@
 <?php 
-
-
-
 $sql_total ="SELECT COUNT(*) as total_packages FROM Packages";
 $sql_totalA ="SELECT COUNT(*) as total_auteurs FROM Auteurs";
 $sql_totalV ="SELECT COUNT(*) as total_versions FROM Versions";
