@@ -1,7 +1,11 @@
 <?php 
 session_start();
 include ('../../Src/db_conn.php');
-
+$query ="SELECT AuteurId ,name as nameAuteur from Auteurs";
+$resultAuteur=mysqli_query($conn,$query);
+if(!$resultAuteur){
+    echo 'Erreur lors de la récupération des données : ' . mysqli_error($conn);
+}
 $sql ="SELECT * from Packages";
  $result =mysqli_query($conn,$sql);
  if(!$result){
@@ -11,37 +15,58 @@ $sql ="SELECT * from Packages";
     
      $name = $_POST['name'] ?? '';
      $description = $_POST['description'] ?? '';
- 
+     $auteur_id = intval($_POST['Auteur_Id'] ?? '');
     
-     if (!empty($name) && !empty($description)) {
+     if (!empty($name) && !empty($description) && !empty($auteur_id)) {
          
          $requete = "INSERT INTO `Packages` (name, description) VALUES (?, ?)";
          $stmt = mysqli_prepare($conn, $requete);
  
          if ($stmt) {
-             // Associer les variables à la requête préparée
              mysqli_stmt_bind_param($stmt, "ss", $name, $description);
- 
-             
+
              if (mysqli_stmt_execute($stmt)) {
-                 echo '<script>alert("Package ajouté avec succès !");</script>';
-                 header("Location: " . $_SERVER['PHP_SELF']); 
-                 exit;
-             } else {
-                 echo '<script>alert("Erreur lors de l\'ajout : ' . mysqli_error($conn) . '");</script>';
-             }
- 
-             mysqli_stmt_close($stmt);
-         } else {
-             echo '<script>alert("Erreur de préparation de la requête : ' . mysqli_error($conn) . '");</script>';
-         }
-     } else {
-         echo '<script>alert("Veuillez remplir tous les champs.");</script>';
-     }
- 
-     
-     mysqli_close($conn);
- }
+
+
+                $last_idP= mysqli_insert_id($conn);
+
+
+                $requeteF="INSERT INTO `package_auteur` (packageId, auteurId) VALUES (?, ?)";
+                $stmF=mysqli_prepare($conn,$requeteF);
+
+                if($stmF){
+                    mysqli_stmt_bind_param($stmF,"ii",$last_idP,$auteur_id);
+
+                    if(mysqli_stmt_execute($stmF)){
+                        echo '<script>alert("Package and author relationship added successfully!");</script>';
+                        header("Location: " . $_SERVER['PHP_SELF']); 
+                        exit;
+                    }else {
+                        echo '<script>alert("Error adding author relationship: ' . mysqli_error($conn) . '");</script>';
+                    }
+                    mysqli_stmt_close($stmtF);
+                }else {
+                    echo '<script>alert("Error preparing relationship query: ' . mysqli_error($conn) . '");</script>';
+                }}else {
+                    echo '<script>alert("Error adding package: ' . mysqli_error($conn) . '");</script>';
+                }}else {
+                    echo '<script>alert("Please fill in all fields.");</script>';
+                }
+                mysqli_close($conn);}
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
 include ('caractiristique.php');
 
 
@@ -147,7 +172,12 @@ include ('caractiristique.php');
           <label for="description" class="block text-sm font-medium text-gray-700">description</label>
           <textarea id="description" name="description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
         </div>
-
+        <select  name="Auteur_Id" class="block text-sm font-medium text-gray-700" id="Package_Id" required>
+                <option value="">selectioner un auteur</option>
+                <?php while($row =$resultAuteur->fetch_assoc()):?>
+                <option value="<?= $row['AuteurId']?>"><?= htmlspecialchars($row['nameAuteur'])?></option>
+                <?php endwhile;?>
+            </select>
         <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">ADD</button>
       </form>
     </div>
