@@ -1,10 +1,10 @@
-# Ibrahim_Nidam_JSPackages
+# oumaima_ait_said_JSPackages
 
 **Gestion des Packages JavaScript**
 
 **Author du Brief:** Iliass RAIHANI.
 
-**Author:** Ibrahim Nidam.
+**Author:** oumaima ait said
 
 ## Links
 
