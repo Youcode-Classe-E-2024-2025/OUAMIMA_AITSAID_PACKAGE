@@ -1,44 +1,3 @@
-**Lien d'ERD** (https://dbdiagram.io/d/6756f533e9daa85aca21eeaa)
-**lien UmL** (https://lucid.app/lucidchart/889ddd21-91a8-481a-b1ea-4e95a56f0cc1/edit?viewport_loc=-587%2C-1235%2C2711%2C1320%2C.Q4MUjXso07N&invitationId=inv_ccbcac2b-68e1-4020-85bd-a0a1664fc098)
-
-
-projet_gestion_packages/
-│
-├── database/
-│   ├── create_database.sql       
-│   ├── insert_data.sql           
-│   ├── queries.sql               
-│
-├── public/
-├── adding/            
-│   ├── add_package.php           
-│   ├── add_author.php            
-│   ├── add_version.php 
-├── public/
-│   ├── update_package.php
-│   ├── update_auteur.php 
-│   ├── update_version.php  
-├── public/
-│   ├── delete_version.php         
-│   ├── delete_package.php      
-│   ├── delete_auteur.php  
-│   
-|index.php      
-│       
-│
-├── src/
-│   ├── db_conn.php           
-│
-├── assets/
-│   ├── css/                       
-│
-├── docs/
-│   ├── erd.png          
-│   ├── README.md                
-│
-└──   
-
-
 # Ibrahim_Nidam_JSPackages
 
 **Gestion des Packages JavaScript**
@@ -194,3 +153,40 @@ Une communauté de développeurs JavaScript souhaite moderniser son système de 
     - Lecture des données dans un tableau
     - Fonctionnalités permettant l’ajouter de données
     - Des jointures fonctionnelles (ex. liste des packages par auteur, historique des versions d’un package).
+
+
+GESTION_PACKAGE/
+│
+├── database/
+│   ├── create_database.sql       
+│   ├── insert_data.sql           
+│   ├── queries.sql               
+│
+├── public/
+├── adding/            
+│   ├── add_package.php           
+│   ├── add_author.php            
+│   ├── add_version.php 
+├── public/
+│   ├── update_package.php
+│   ├── update_auteur.php 
+│   ├── update_version.php  
+├── public/
+│   ├── delete_version.php         
+│   ├── delete_package.php      
+│   ├── delete_auteur.php  
+│   
+|index.php      
+│       
+│
+├── src/
+│   ├── db_conn.php           
+│
+├── assets/
+│   ├── css/                       
+│
+├── docs/
+│   ├── erd.png          
+│   ├── README.md                
+│
+└──   
